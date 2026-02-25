@@ -1,0 +1,285 @@
+@font-face {
+  font-family: "SteinsGate";
+  src: url(/fonts/font/BONX-Medium.otf) format("opentype");
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+p{
+  cursor: default;
+}
+h1{
+  cursor: default;
+}
+html{
+  background-image: url(/images/SteinsGateCog.png);
+  display: flex;
+  justify-content: center;
+}
+
+body{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: max-content;
+  height: max-content;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1200px;
+  row-gap: 10px;
+  background-color: #E8EBEB;
+  border: 8px solid #ffffff;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+section{
+  font-family: Verdana;
+  height: max-content;
+  background-color: hsl(0, 0%, 85%);
+  border: 2px solid hsl(180, 1%, 40%);
+}
+
+.frame{
+  padding: 10px;
+  gap: 10px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+}
+.contents{
+  padding: 20px;
+  background-color: #fff;
+  border: 3px solid hsl(180, 1%, 60%);
+  border-radius: 3px;
+}
+main{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 10px;
+}
+
+
+.head{
+  height: max-content;
+  background-color: #404141;
+  padding: 5px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 50%) hsl(180, 1%, 5%) hsl(180, 1%, 5%) hsl(180, 1%, 50%);
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.navbar{
+  font-family: Verdana;
+  height: max-content;
+  background-color: hsl(0, 0%, 85%);
+  border: 2px solid hsl(180, 1%, 40%);
+  
+
+}
+
+.navbar ul{
+  list-style-position: inside;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  padding: 20px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+}
+.icons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.icons div{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  background-color: #ffffff;
+  border-radius: 5%;
+  box-shadow: 0px 0px 2px #000 inset;
+  cursor: pointer;
+  
+}
+.head p{
+  font-size: 12px;
+  cursor: default;
+  color: #E8EBEB;
+}
+
+
+
+
+
+aside{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.musicframe{
+  font-family: Verdana;
+  height: max-content;
+  background-color: hsl(0, 0%, 85%);
+  border: 2px solid hsl(180, 1%, 40%);
+}
+.music{
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+}
+.makise{
+  width: 100px;
+  height: 100px;
+
+}
+.todaySong{
+  width: min-content;
+}
+.controls{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.buttons{
+  
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  
+}
+button{
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  align-self: center;
+  display: inline-flex;
+  width: 30px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 85%);
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+  cursor: pointer;
+
+}
+
+button img{
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+h1{
+  text-align: center;
+}
+
+.progress{
+  
+  appearance: none;
+  height: 5px;
+
+}
+.progress::-webkit-slider-thumb{
+  appearance: none;
+  cursor: pointer;
+  
+  height: 15px;
+  width: 6px;
+  background-color: #404141;
+  color: #404141;
+}
+
+.gameframe{
+  font-family: Verdana;
+  height: max-content;
+  background-color: hsl(0, 0%, 85%);
+  border: 2px solid hsl(180, 1%, 40%);
+}
+
+
+
+
+header{
+  position: relative;
+  color: black;
+  font-family: Verdana;
+  border-radius: 10px 10px 0 0;
+  height: max-content;
+
+  padding: 20px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+  
+}
+#okabe{
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  /*float: right;*/
+  height: 200px;
+}
+
+#clock{
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 10px;
+  display: block;
+  position: absolute;
+  top: -80px;
+  left: 0px;
+  width: max-content;
+  height: max-content;
+  border: 8px ridge #404141;
+  border-radius: 5px;
+  background-color: #404141;
+}
+
+#clock span{
+  margin: 0;
+  padding: 0;
+  font-family: "SteinsGate";
+  color: #ffd000;
+  font-size: 50px;
+}
+audio{
+  /*visibility: hidden;*/
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+footer{
+  height: 80px;
+  padding: 10px;
+  gap: 10px;
+  border-width: 3.5px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+  border-radius: 0 0 10px 10px;
+}
