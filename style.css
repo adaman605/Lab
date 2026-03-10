@@ -5,13 +5,16 @@
 *{
   box-sizing: border-box;
   margin: 0;
+  
   padding: 0;
 }
+
 p{
   cursor: default;
 }
 h1{
   cursor: default;
+  text-align: center;
 }
 html{
   background-image: url(/images/SteinsGateCog.png);
@@ -50,8 +53,10 @@ section{
 }
 .contents{
   padding: 20px;
-  background-color: #fff;
-  border: 3px solid hsl(180, 1%, 60%);
+  background-color: hsl(0, 0%, 95%);
+  border-width: 3px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 60%) hsl(180, 1%, 100%) hsl(180, 1%, 100%) hsl(180, 1%, 60%);
   border-radius: 3px;
 }
 main{
@@ -91,9 +96,11 @@ main{
   gap: 15px;
 
   padding: 20px;
-  border-width: 3.5px;
+  background-color: hsl(0, 0%, 95%);
+  border-width: 3px;
   border-style: solid;
-  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+  border-color: hsl(180, 1%, 60%) hsl(180, 1%, 100%) hsl(180, 1%, 100%) hsl(180, 1%, 60%);
+  border-radius: 3px;
 }
 .icons{
   display: flex;
@@ -128,7 +135,24 @@ aside{
   flex-direction: column;
   gap: 10px;
 }
+.containerText{
+  position: relative;
+  overflow: hidden;
+  font-size: 12px;
+  height: 20px;
+  background-color: hsl(0, 0%, 95%);
+  border-width: 3px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 60%) hsl(180, 1%, 100%) hsl(180, 1%, 100%) hsl(180, 1%, 60%);
+  border-radius: 3px;
+}
 
+#songText{
+  position: absolute;
+  margin: auto;
+  width: max-content;
+  animation: my-animation 24s linear infinite;
+}
 .musicframe{
   font-family: Verdana;
   height: max-content;
@@ -176,7 +200,7 @@ button{
   justify-content: center;
   align-items: center;
   background-color: hsl(0, 0%, 85%);
-  border-width: 3.5px;
+  border-width: 2px;
   border-style: solid;
   border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
   cursor: pointer;
@@ -193,25 +217,30 @@ button img{
 
 
 
-h1{
-  text-align: center;
-}
-
 .progress{
-  
+  background-color: hsl(0, 0%, 95%);
+  border-width: 3px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 60%) hsl(180, 1%, 100%) hsl(180, 1%, 100%) hsl(180, 1%, 60%);
+  border-radius: 3px;
   appearance: none;
   height: 5px;
+  cursor: pointer;
 
 }
 .progress::-webkit-slider-thumb{
   appearance: none;
   cursor: pointer;
-  
+  border-width: 3px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 50%) hsl(180, 1%, 5%) hsl(180, 1%, 5%) hsl(180, 1%, 50%);
   height: 15px;
   width: 6px;
   background-color: #404141;
   color: #404141;
 }
+
+
 
 .gameframe{
   font-family: Verdana;
@@ -219,7 +248,75 @@ h1{
   background-color: hsl(0, 0%, 85%);
   border: 2px solid hsl(180, 1%, 40%);
 }
+#pull{
+  height: max-content;
+  padding: 5px;
+  width: max-content;
+}
+#gameContents{
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+}
+#pityCount{
+  align-self: center;
+  font-weight: bold;
+}
+.oopaWindow{
+  position: fixed;
+  background-color: #404141;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.oopaWindow.open{
+  background-color: #40414190;
+  opacity: 1;
+  z-index: 999;
+
+}
+
+.gameHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Verdana;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.gameInfoBtn{
+  display: flex;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  justify-content: center;
+  background-color: hsl(0, 0%, 85%);
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+}
+#canvas{
+  cursor: pointer;
+}
+.gameInfo{
+  background-color: #E8EBEB;
+  padding: 10px;
+}
+
+
+th, td{
+  padding: 10px;
+}
 
 
 

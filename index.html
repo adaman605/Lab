@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <style id="style"></style>
     <title>Document</title>
+    
 </head>
 <body>
     <header>
@@ -38,6 +40,7 @@
                 </div>
 
             </div>
+            <div class="frame">
             <ul>
                 <li><a href="">Home</a></li>
                 <li><a href="">Music</a></li>
@@ -49,6 +52,8 @@
                 <li><a href="">Portfolio</a></li>
                 <li><a href="">My Interests</a></li>
             </ul>
+            </div>
+
 
         </nav>
         <section>
@@ -97,20 +102,23 @@
                 <div class="music">
                     <img src="/images/ae2d00ab82ede025b0c2be140634d6d0.jpg" alt="" class="makise">
                     <div class="todaySong">
-                        <p id="songText">Today's song</p>
+                        <div class="containerText">
+                            <p id="songText">Today's song</p>
+                        </div>
+                        
                         <audio id="song">
                             <source></source>
                         </audio>
                         <div class="controls">
                             <input type="range" class="progress" id="progress" value="0" >
                             <div class="buttons">
-                                <button onclick="backward()" id="back">
+                                <button id="back">
                                     <img src="/images/backwards.svg" alt="">
                                 </button>
-                                <button onclick="playSong()" id="play">
+                                <button  id="play">
                                     <img src="/images/play.svg" alt="" id="playImg">
                                 </button>
-                                <button onclick="forward()" id="forward">
+                                <button  id="forward">
                                     <img src="/images/forward.svg" alt="">
                                 </button>
                             </div>
@@ -137,13 +145,53 @@
                         </div>
                     </div>
                 </div>
-            
-                <div class="frame">
-                    <div >
-                        <p>Pull!!</p>
-                    </div>
                 
-                    
+                <div class="frame" >
+                    <div class="oopaWindow" id="oopaWindow">
+                        <div class="gameInfo">
+                            <table id="gachaTable">
+                                <tr>
+                                    <th>Rarity</th>
+                                    <th>Percentage</th>
+                                    <th>Oopa</th>
+                                </tr>
+                                <tr>
+                                    <td>Secret</td>
+                                    <td>0.1%</td>
+                                    <td>???</td>
+                                </tr>
+                                <tr>
+                                    <td>Legendary</td>
+                                    <td>0.9%</td>
+                                    <td>Yellow Oopa, Sunlit Oopa</td>
+                                </tr>
+                                <tr>
+                                    <td>Epic</td>
+                                    <td>4%</td>
+                                    <td>Brown Oopa, Blue Oopa</td>
+                                </tr>
+                                <tr>
+                                    <td>Rare</td>
+                                    <td>15%</td>
+                                    <td>Green Oopa, Orange Oopa, Lime Oopa</td>
+                                </tr>
+                                <tr>
+                                    <td>Common</td>
+                                    <td>80%</td>
+                                    <td>Purple Oopa, Light Blue Oopa, Pink Oopa</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="gameHeader">
+                        <p id="pityCount"></p>
+                        <div class="gameInfoBtn" id="open">
+                            <p>i</p>
+                        </div>
+                    </div>
+                    <div class="contents" id="gameContents">
+                        <canvas id="canvas" onclick="pullAnimation()"></canvas>
+                    </div>  
                 </div>
             </div>
 
@@ -153,39 +201,48 @@
         
     </footer>
 
-    <script>
-        
+    <!--<script>
+        let style = document.getElementById("style")
+        let pos = "right";
         let song = document.getElementById("song")
-    
+        let songText = document.getElementById("songText")
+        let data;
         document.addEventListener("DOMContentLoaded", async function () {
-            const today = new Date().getDay().toString()
-            const savedDay = localStorage.getItem("day")
-            const savedURL = localStorage.getItem("url")
-            if(savedDay !== today || !savedURL){
-                const newURL = await fetchURL()
-                song.src = newURL;
-                localStorage.setItem("day", today);
-                localStorage.setItem("url", newURL);
-            }else{
-                song.src = savedURL
+            data = await fetchURL();
+            song.src = data.url
+            songText.innerHTML = data.title + " - "+data.author
+            style.innerHTML = `
+            @keyframes my-animation{
+                0%{${pos}: -${songText.offsetWidth}px}
+                100%{${pos}: 100%}
             }
+            `
+            document.getElementById("forward").onclick = forward
+            document.getElementById("back").onclick = backward
+            document.getElementById("play").onclick = playSong
         });
+
+
+        let apiURL = "https://songserver-kqgl.onrender.com/song-of-the-day"
+        async function fetchURL() {
+            songPlayer.onclick = null;
+            songText.innerHTML = "Getting song for you n00b..."
+            style.innerHTML = `
+            @keyframes my-animation{
+                0%{${pos}: -${songText.offsetWidth}px}
+                100%{${pos}: 100%}
+            }
+            `
+            const res = await fetch(apiURL)
+            const data = await res.json()
+            return data 
+        }
         let hrs = document.getElementById("hours")
         let mins = document.getElementById("minutes")
         let secs = document.getElementById("seconds")
         
         let songPlayer = document.getElementById("play")
         let progress = document.getElementById("progress")
-
-        let apiURL = "https://songserver-kqgl.onrender.com/song-of-the-day"
-        async function fetchURL() {
-            songPlayer.onclick = null;
-            document.getElementById("songText").innerHTML = "Getting song for you n00b..."
-            const res = await fetch(apiURL)
-            const data = await res.json()
-            return data.url 
-        }
-        
         setInterval(() => {
             let currentTime = new Date()
 
@@ -202,35 +259,41 @@
         }
 
         progress.onchange = function (){
+            console.log("ahoj")
             song.currentTime = progress.value;
             document.getElementById("playImg").src = "/images/pause.svg"
             song.play()
         }
 
-
-        
-        async function playSong(){
-            
-            const today = new Date().getDay().toString()
-            const savedURL = localStorage.getItem("url")
-
-            if(localStorage.getItem("day") !== today || !savedURL){
-                const newURL = await fetchURL()
-                song.src = newURL
-                localStorage.setItem("day", today)
-                localStorage.setItem("url", newURL)
+        let skipTime = 5;
+        function forward(){
+            if(song.currentTime + skipTime > song.duration){
+                song.currentTime = song.duration
             }else{
-                song.src = savedURL
+                song.currentTime += skipTime
             }
-    
+            progress.value = song.currentTime
+            
+        }
+
+        function backward(){
+            if(song.currentTime - skipTime < 0){
+                song.currentTime = 0
+            }else{
+                song.currentTime -= skipTime
+            }
+            progress.value = song.currentTime
+            
+        }
+        
+        function playSong(){
+            
+            console.log("ahoj")
+            song.src = data.url
             song.volume = 0.50;
             song.loop = true
             song.currentTime = progress.value
-            try {
-                await song.play()
-            } catch (error) {
-                console.log(error)
-            }
+            song.play()
             
 
             songPlayer.onclick = stopSong;
@@ -244,8 +307,15 @@
             songPlayer.onclick = playSong;
             
         }
+        
 
-    </script>
+
+
+        
+    </script>-->
+    <script src="./scripts/clock.js"></script>
+    <script src="./scripts/oopamachine.js"></script>
+    <script src="./scripts/fetchSong.js"></script>
 </body>
 </html>
 
