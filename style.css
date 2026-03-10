@@ -5,7 +5,7 @@
 *{
   box-sizing: border-box;
   margin: 0;
-  
+  user-select: none;
   padding: 0;
 }
 
@@ -284,7 +284,27 @@ button img{
   z-index: 999;
 
 }
+.pulledOopa{
+  position: fixed;
+  background-color: #404141;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.pulledOopa.oopaOpen{
+  background-color: #40414190;
+  opacity: 1;
+  z-index: 999;
+}
 .gameHeader{
   display: flex;
   flex-direction: row;
