@@ -20,20 +20,43 @@ const gachaTable = {
     legendaryRate: 0.009, 
     rareRate: 0.15,
     epicRate: 0.04,
-};
-const pool = {
-    secret: ["Metal Oopa"],
-    legendary:["Yellow Oopa", "Sunlit Oopa"],
-    epic:["Brown Oopa", "Blue Oopa"],
-    rare:["Green Oopa", "Orange Oopa", "Lime Oopa"],
-    common:["Purple Oopa", "Light Blue Oopa", "Pink Oopa"],
 
     commonIndex: 0,
     rareIndex: 1,
     epicIndex: 2,
     legendaryIndex: 3,
     secretIndex: 4,
-}
+
+};
+const pool = [
+    {
+        rarity: "Common",
+        oopas: ["Purple Oopa", "Light Blue Oopa", "Pink Oopa"],
+        color: "white",
+    },
+    {
+        rarity: "Rare",
+        oopas: ["Green Oopa", "Orange Oopa", "Lime Oopa"],
+        color: "green",
+    },
+    {
+        rarity: "Epic",
+        oopas: ["Brown Oopa", "Blue Oopa"],
+        color: "purple",
+    },
+    {
+        rarity: "Legendary",
+        oopas: ["Yellow Oopa", "Sunlit Oopa"],
+        color: "yellow",
+    },
+    {
+        rarity: "Secret",
+        oopas: ["Metal Oopa"],
+        color: "red",
+    }
+
+   
+]
 
 const machine = new Image();
 machine.src = "images/oopamachine.png";
@@ -46,7 +69,7 @@ const frameHeight = 64;
 let frameX = 0;
 let frameY = 0;
 let gameFrame = 0;
-const staggerFrames = 40;
+const staggerFrames = 20;
 
 openBtn.addEventListener("click", ()=>{
     oopaWindow.classList.add("open")
@@ -74,64 +97,48 @@ const oopasImage = new Image()
 oopasImage.src = "images/Oopa.png"
 oopasImage.style.imageRendering = "pixelated"
 function pull(){
-
     pityCount++
     localStorage.setItem("Pity Count", pityCount)
+
+    let index = 0
+    let pull = Math.random()
+
     if(pityCount == gachaTable.pity){
         pityCount = 0;
         localStorage.setItem("Pity Count", pityCount)
-        if(Math.random() < 0.5){
-            return pool.legendary[0]
-        }else{
-            return pool.legendary[1]
-        }
+        drawOopa(gachaTable.legendaryIndex)
+        return
     }
-    let pull = Math.random();
-
+    
+    
     if(pull < gachaTable.secretRate){
-        const ranPull = Math.floor(Math.random()*pool.secret.length)
-        console.log(ranPull)
-        oopaCtx.drawImage(oopasImage, ranPull*32, pool.secretIndex*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-        pulledOopaName.style.color = "red"
-        pulledOopaName.innerHTML = "Secret: "+pool.secret[ranPull]
+        index = gachaTable.secretIndex
+
     }else if(pull < gachaTable.secretRate + gachaTable.legendaryRate){
-        
-        const ranPull = Math.floor(Math.random()*pool.legendary.length)
-        console.log(ranPull)
-        oopaCtx.drawImage(oopasImage, ranPull*32, pool.legendaryIndex*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-        pulledOopaName.style.color = "yellow"
-        pulledOopaName.innerHTML = "Legendary: "+pool.legendary[ranPull]
+        pityCount = 0;
+        localStorage.setItem("Pity Count", pityCount)
+        index = gachaTable.legendaryIndex
 
     }else if(pull < gachaTable.secretRate + gachaTable.legendaryRate + gachaTable.epicRate){
-
-        const ranPull = Math.floor(Math.random()*pool.epic.length)
-        console.log(ranPull)
-        oopaCtx.drawImage(oopasImage, ranPull*32, pool.epicIndex*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-        pulledOopaName.style.color = "purple"
-        pulledOopaName.innerHTML = "Epic: "+pool.epic[ranPull]
+        index = gachaTable.epicIndex
 
     }else if(pull < gachaTable.secretRate + gachaTable.legendaryRate + gachaTable.epicRate + gachaTable.rareRate){
-        
-        const ranPull = Math.floor(Math.random()*pool.rare.length)
-        console.log(ranPull)
-        oopaCtx.drawImage(oopasImage, ranPull*32, pool.rareIndex*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-        pulledOopaName.style.color = "green"
-        pulledOopaName.innerHTML = "Rare: "+pool.rare[ranPull]
-
-    }else{
-
-        const ranPull = Math.floor(Math.random()*pool.common.length)
-        console.log(ranPull)
-        oopaCtx.drawImage(oopasImage, ranPull*32, pool.commonIndex*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-        pulledOopaName.style.color = "white"
-        pulledOopaName.innerHTML = "Common: "+pool.common[ranPull]
+        index = gachaTable.rareIndex
 
     }
+    drawOopa(index)
 }
-pulledOopaWindow.addEventListener("click", ()=>{
-    pulledOopaWindow.classList.remove("oopaOpen")
-})
 
+function closeWindow(){
+    pulledOopaWindow.onclick = ()=>{pulledOopaWindow.classList.remove("oopaOpen")}
+}
+
+function drawOopa(index){
+    let ranOopa = Math.floor(Math.random()*pool[index].oopas.length)
+    oopaCtx.drawImage(oopasImage, ranOopa*32, index*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
+    pulledOopaName.style.color = pool[index].color
+    pulledOopaName.innerHTML = pool[index].rarity+": " + pool[index].oopas[ranOopa]
+}
 
 function pullAnimation(){
     canvas.onclick = null;
@@ -143,11 +150,12 @@ function pullAnimation(){
             gameFrame = 0;
             frameX = 0;
             ctx.drawImage(machine, frameX*frameWidth, frameY*frameHeight, frameWidth, frameHeight, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-        
-            document.getElementById("pityCount").innerHTML =pityCount +"/"+gachaTable.pity
             pull()
+            document.getElementById("pityCount").innerHTML =pityCount +"/"+gachaTable.pity
+            pulledOopaWindow.onclick = null
             pulledOopaWindow.classList.add("oopaOpen")
-            canvas.onclick = pullAnimation;
+            setTimeout(closeWindow, 500)
+            canvas.onclick = pullAnimation
             return;
         }else{
             frameX++;

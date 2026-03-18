@@ -77,6 +77,15 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos, fugiat voluptatibus nobis iure voluptates beatae, molestiae nesciunt soluta nulla eligendi tempore ullam temporibus neque expedita qui sint quaerat maiores?</p>
                 </div>
 
             </div>
@@ -147,46 +156,7 @@
                 </div>
                 
                 <div class="frame" >
-                    <div class="oopaWindow" id="oopaWindow">
-                        <div class="gameInfo">
-                            <table id="gachaTable">
-                                <tr>
-                                    <th>Rarity</th>
-                                    <th>Percentage</th>
-                                    <th>Oopa</th>
-                                </tr>
-                                <tr>
-                                    <td>Secret</td>
-                                    <td>0.1%</td>
-                                    <td>???</td>
-                                </tr>
-                                <tr>
-                                    <td>Legendary</td>
-                                    <td>0.9%</td>
-                                    <td>Yellow Oopa, Sunlit Oopa</td>
-                                </tr>
-                                <tr>
-                                    <td>Epic</td>
-                                    <td>4%</td>
-                                    <td>Brown Oopa, Blue Oopa</td>
-                                </tr>
-                                <tr>
-                                    <td>Rare</td>
-                                    <td>15%</td>
-                                    <td>Green Oopa, Orange Oopa, Lime Oopa</td>
-                                </tr>
-                                <tr>
-                                    <td>Common</td>
-                                    <td>80%</td>
-                                    <td>Purple Oopa, Light Blue Oopa, Pink Oopa</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="pulledOopa" id="pulledOopa">
-                        <p id="pulledOopaName"></p>
-                        <canvas width="128" height="128" id="oopaCanvas"></canvas>
-                    </div>
+                   
                     <div class="gameHeader">
                         <p id="pityCount"></p>
                         <div class="gameInfoBtn" id="open">
@@ -204,119 +174,47 @@
     <footer>
         
     </footer>
+     <div class="oopaWindow" id="oopaWindow">
+        <div class="gameInfo">
+            <table id="gachaTable">
+                <tr>
+                    <th>Rarity</th>
+                    <th>Percentage</th>
+                    <th>Oopa</th>
+                </tr>
+                <tr>
+                    <td>Secret</td>
+                    <td>0.1%</td>
+                    <td>???</td>
+                </tr>
+                <tr>
+                    <td>Legendary</td>
+                    <td>0.9%</td>
+                    <td>Yellow Oopa, Sunlit Oopa</td>
+                </tr>
+                <tr>
+                    <td>Epic</td>
+                    <td>4%</td>
+                    <td>Brown Oopa, Blue Oopa</td>
+                </tr>
+                <tr>
+                    <td>Rare</td>
+                    <td>15%</td>
+                    <td>Green Oopa, Orange Oopa, Lime Oopa</td>
+                </tr>
+                <tr>
+                    <td>Common</td>
+                    <td>80%</td>
+                    <td>Purple Oopa, Light Blue Oopa, Pink Oopa</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="pulledOopa" id="pulledOopa">
+        <p id="pulledOopaName"></p>
+        <canvas width="128" height="128" id="oopaCanvas"></canvas>
+    </div>
 
-    <!--<script>
-        let style = document.getElementById("style")
-        let pos = "right";
-        let song = document.getElementById("song")
-        let songText = document.getElementById("songText")
-        let data;
-        document.addEventListener("DOMContentLoaded", async function () {
-            data = await fetchURL();
-            song.src = data.url
-            songText.innerHTML = data.title + " - "+data.author
-            style.innerHTML = `
-            @keyframes my-animation{
-                0%{${pos}: -${songText.offsetWidth}px}
-                100%{${pos}: 100%}
-            }
-            `
-            document.getElementById("forward").onclick = forward
-            document.getElementById("back").onclick = backward
-            document.getElementById("play").onclick = playSong
-        });
-
-
-        let apiURL = "https://songserver-kqgl.onrender.com/song-of-the-day"
-        async function fetchURL() {
-            songPlayer.onclick = null;
-            songText.innerHTML = "Getting song for you n00b..."
-            style.innerHTML = `
-            @keyframes my-animation{
-                0%{${pos}: -${songText.offsetWidth}px}
-                100%{${pos}: 100%}
-            }
-            `
-            const res = await fetch(apiURL)
-            const data = await res.json()
-            return data 
-        }
-        let hrs = document.getElementById("hours")
-        let mins = document.getElementById("minutes")
-        let secs = document.getElementById("seconds")
-        
-        let songPlayer = document.getElementById("play")
-        let progress = document.getElementById("progress")
-        setInterval(() => {
-            let currentTime = new Date()
-
-            hrs.innerHTML = (currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
-            mins.innerHTML = (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
-            secs.innerText = (currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
-            progress.value = song.currentTime
-        }, 1000);
-
-
-        song.onloadedmetadata = function (){
-            progress.max = song.duration;
-            progress.value = song.currentTime;
-        }
-
-        progress.onchange = function (){
-            console.log("ahoj")
-            song.currentTime = progress.value;
-            document.getElementById("playImg").src = "/images/pause.svg"
-            song.play()
-        }
-
-        let skipTime = 5;
-        function forward(){
-            if(song.currentTime + skipTime > song.duration){
-                song.currentTime = song.duration
-            }else{
-                song.currentTime += skipTime
-            }
-            progress.value = song.currentTime
-            
-        }
-
-        function backward(){
-            if(song.currentTime - skipTime < 0){
-                song.currentTime = 0
-            }else{
-                song.currentTime -= skipTime
-            }
-            progress.value = song.currentTime
-            
-        }
-        
-        function playSong(){
-            
-            console.log("ahoj")
-            song.src = data.url
-            song.volume = 0.50;
-            song.loop = true
-            song.currentTime = progress.value
-            song.play()
-            
-
-            songPlayer.onclick = stopSong;
-            document.getElementById("playImg").src = "/images/pause.svg"
-            
-        }
-
-        function stopSong(){
-            document.getElementById("playImg").src = "/images/play.svg"
-            song.pause();
-            songPlayer.onclick = playSong;
-            
-        }
-        
-
-
-
-        
-    </script>-->
     <script src="./scripts/clock.js"></script>
     <script src="./scripts/oopamachine.js"></script>
     <script src="./scripts/fetchSong.js"></script>
