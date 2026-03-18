@@ -138,14 +138,20 @@ section .contents{
   overflow-y: scroll;
   scrollbar-width: none;
 }
-aside{
+.asideRight{
   display: grid;
   grid-template-rows: 161px 209px 185px 185px;
   grid-row: 1/5;
   grid-column: 3/4;
   gap: 10px;
 }
-
+.asideLeft{
+  display: grid;
+  grid-template-rows: 185px 185px;
+  grid-row: 3/5;
+  grid-column: 1/2;
+  gap: 10px;
+}
 footer{
   height: 80px;
   padding: 10px;
@@ -154,6 +160,8 @@ footer{
   border-style: solid;
   border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
   border-radius: 0 0 10px 10px;
+
+  
 }
 
 
@@ -206,6 +214,7 @@ footer{
 
   display: flex;
   flex-direction: column;
+
   flex: 1;
   gap: 10px;
 }
@@ -426,6 +435,41 @@ th, td{
   padding: 10px;
 }
 
+
+.calendar{
+  border: 2px solid hsl(180, 1%, 40%);
+  display: flex;
+  grid-row: 1/2;
+}
+.updates{
+  border: 2px solid hsl(180, 1%, 40%);
+  display: flex;
+  grid-row: 2/3;
+}
+.alpacaman{
+  border: 2px solid hsl(180, 1%, 40%);
+  display: flex;
+}
+.asideBottom{
+  
+  display: flex;
+  flex-direction: column;
+  
+  gap: 10px;
+}
+
+.bottomTop{
+  display: flex;
+  height: 50%;
+  border: 2px solid hsl(180, 1%, 40%);
+
+}
+.bottomBottom{
+  display: flex;
+  height: 50%;
+  border: 2px solid hsl(180, 1%, 40%);
+
+}
 
 #okabe{
   display: block;

@@ -69,7 +69,7 @@ const frameHeight = 64;
 let frameX = 0;
 let frameY = 0;
 let gameFrame = 0;
-const staggerFrames = 20;
+const staggerFrames = 10;
 
 openBtn.addEventListener("click", ()=>{
     oopaWindow.classList.add("open")
