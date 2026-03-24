@@ -557,7 +557,7 @@ section .frame .contents{
 
   display: flex;
   flex-direction: column;
-  z-index: -1;
+  z-index: -2;
   opacity: 0;
 
 }
@@ -569,4 +569,20 @@ section .frame .contents{
 
 .inventoryWindow.frame{
   flex: 1;
+}
+
+.cardsContainer{
+  padding: 50px;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 256px;
+  row-gap: 50px;
+  gap: 50px;
+}
+.invenCards{
+  width: 100%;
+  height: 100%;
+  border: #000 solid 1px;
 }

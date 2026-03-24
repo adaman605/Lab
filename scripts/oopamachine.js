@@ -123,22 +123,29 @@ function pull(){
         index = gachaTable.rareIndex
 
     }
-    return drawOopa(null,index)
+    return drawOopa(false, null, index)
     
 }
 
 
 
-function drawOopa(x, y){
+function drawOopa(custom, x, y, nameEle, ctx, width, height){
     let posX = x
     let posY = y
-    if(!x){
-        posX = Math.floor(Math.random()*pool[posY].oopas.length)
-        console.log(x)
+    if(!custom){
+        if(!x){
+            posX = Math.floor(Math.random()*pool[posY].oopas.length)
+            console.log(x)
+        }
+        oopaCtx.drawImage(oopasImage, posX*32, posY*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
+        pulledOopaName.style.color = pool[posY].color
+        pulledOopaName.innerHTML = pool[posY].rarity+": " + pool[posY].oopas[posX]
+    }else{
+        ctx.drawImage(oopasImage, posX*32, posY*32, 32, 32, 0, 0, width, height)
+        nameEle.style.color = pool[posY].color
+        nameEle.innerHTML = pool[posY].rarity+": " + pool[posY].oopas[posX]
     }
-    oopaCtx.drawImage(oopasImage, posX*32, posY*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-    pulledOopaName.style.color = pool[posY].color
-    pulledOopaName.innerHTML = pool[posY].rarity+": " + pool[posY].oopas[posX]
+
 
 
     return {x: posX, y: posY, rarity: pool[posY].rarity, name: pool[posY].oopas[posX]} 
@@ -187,7 +194,30 @@ function claimOopa(){
     closeWindow()
 }
 const inventoryWindow = document.getElementById("inventoryWindow")
+const cardsContainer = document.getElementById("cardsContainer")
+
+let previousLength = 0
 function showInventory(){
+    let inv = JSON.parse(inventory) || []
+    if(previousLength != inv.length){
+        for(let i = previousLength; i < inv.length; i++){
+            let div = document.createElement("div")
+            let p = document.createElement("p")
+            let canvas = document.createElement("canvas")
+            canvas.width = 128
+            canvas.height = 128
+            let canvasCtx = canvas.getContext("2d")
+            canvasCtx.imageSmoothingEnabled = false;
+        
+            drawOopa(true, inv[i].x, inv[i].y, p, canvasCtx, canvas.width, canvas.height)
+
+            div.classList.add("invenCards")
+            div.append(p, canvas)
+
+            cardsContainer.appendChild(div)
+        }
+        previousLength = inv.length
+    }
     document.documentElement.style.overflow = "hidden"
     inventoryWindow.classList.add("openInventory")
 }
