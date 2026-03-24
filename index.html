@@ -9,7 +9,7 @@
     
 </head>
 <body>
-    <header>
+    <header class="outline">
         <div id="clock">
             <span id="hours">10</span>
             <span>.</span>
@@ -24,7 +24,7 @@
     </header>
     <main>
         
-        <nav class="navbar">
+        <nav class="navbar outline">
             <div class="head">
                 <p>navigation.html</p>
                 <div class="icons">
@@ -57,18 +57,18 @@
 
         </nav>
         <aside class="asideLeft">
-            <div class="calendar" class="">
+            <div class="calendar outline">
                 <div class="frame">
                     <div class="contents"></div>
                 </div>
             </div>
-            <div class="updates">
+            <div class="updates outline">
                 <div class="frame">
                     <div class="contents"></div>
                 </div>
             </div>
         </aside>
-        <section>
+        <section class="outline">
             <div class="head">
                 <p>index.html</p>
                 <div class="icons">
@@ -104,12 +104,12 @@
  
         </section>
         <aside class="asideBottom">
-            <div class="bottomTop">
+            <div class="bottomTop outline">
                 <div class="frame">
                     <div class="contents"></div>
                 </div>
             </div>
-            <div class="bottomBottom">
+            <div class="bottomBottom outline">
                 <div class="frame">
                     <div class="contents"></div>
                 </div>
@@ -117,7 +117,7 @@
 
         </aside>
         <aside class="asideRight">
-            <div class="musicframe">
+            <div class="musicframe outline">
                 <div class="head">
                     <p>musicplayer.html</p>
                     <div class="icons">
@@ -164,7 +164,7 @@
 
                 </div>
             </div>
-            <div class="gameframe">
+            <div class="gameframe outline">
                 <div class="head">
                     <p>oopamachine.html</p>
                     <div class="icons">
@@ -184,23 +184,27 @@
                    
                     <div class="gameHeader">
                         <p id="pityCount"></p>
-                        <div class="gameInfoBtn" id="open">
-                            <p>i</p>
-                        </div>
+                        <button class="gameInfoBtn" id="open">
+                            i
+                        </button>
+ 
                     </div>
                     <div class="contents" id="gameContents">
                         <canvas id="canvas" onclick="pullAnimation()"></canvas>
+                        <button class="inventoryBtn" onclick="showInventory()">Inventory</button>
                     </div>  
                 </div>
             </div>
-            <div class="alpacaman">
+            <div class="alpacaman outline">
                 <div class="frame">
-                    <div class="contents"></div>
+                    <div class="contents">
+                        <img src="./images/alpacaman.jpg" alt="" class="alpacamanImg">
+                    </div>
                 </div>
             </div>
         </aside>
     </main>
-    <footer>
+    <footer class="outline">
         <div class="footerContent">
 
         </div>
@@ -242,10 +246,35 @@
         </div>
     </div>
     <div class="pulledOopa" id="pulledOopa">
-        <p id="pulledOopaName"></p>
-        <canvas width="128" height="128" id="oopaCanvas"></canvas>
+        <div class="oopaCard ">
+            <div class="innerCard frame">
+                <p id="pulledOopaName"></p>
+                <div class="contents">
+                    <canvas width="128" height="128" id="oopaCanvas"></canvas>
+                    <button class="claimOopa" onclick="claimOopa()">Claim</button>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <div class="inventoryWindow" id="inventoryWindow">
+        <div class="head">
+                <p>inventory.html</p>
+                <div class="icons">
+                    <div class="minimize" title="oopa">
+                        <img src="./images/under.svg" alt="" width="20px">
+                    </div>
+                    <div class="full" title="oopa">
+                        <img src="./images/resize.svg" alt="" width="20px">
+                    </div>
+                    <div class="cross" title="oopa" onclick="closeInventory()">
+                        <img src="./images/cross.svg" alt="" width="20px" onclick="closeInventory()">
+                    </div>
+                </div>
+        </div>
+        <div class="frame">
+            <div class="contents"></div>
+        </div>
+    </div>
     <script src="./scripts/clock.js"></script>
     <script src="./scripts/oopamachine.js"></script>
     <script src="./scripts/fetchSong.js"></script>

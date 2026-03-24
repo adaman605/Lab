@@ -11,7 +11,6 @@ const oopaCanvas = document.getElementById("oopaCanvas")
 const pulledOopaWindow = document.getElementById("pulledOopa")
 const oopaCtx = oopaCanvas.getContext("2d")
 const pulledOopaName = document.getElementById("pulledOopaName")
-pulledOopaName.style.userSelect = "none"
 const oopaCanvasWidth = oopaCanvas.offsetWidth;
 const oopaCanvasHeight = oopaCanvas.offsetHeight;
 const gachaTable = {
@@ -57,12 +56,23 @@ const pool = [
 
    
 ]
+if(!localStorage.getItem("Pity Count")){
+    localStorage.setItem("Pity Count", 0);
+}
+let pityCount = Number(localStorage.getItem("Pity Count"));
 
 const machine = new Image();
 machine.src = "images/oopamachine.png";
 machine.style.imageRendering = "pixelated"
 
 ctx.imageSmoothingEnabled = false;
+
+document.getElementById("pityCount").innerHTML =pityCount +"/"+gachaTable.pity
+
+oopaCtx.imageSmoothingEnabled = false;
+const oopasImage = new Image()
+oopasImage.src = "images/Oopa.png"
+oopasImage.style.imageRendering = "pixelated"
 
 const frameWidth = 64;
 const frameHeight = 64;
@@ -71,31 +81,18 @@ let frameY = 0;
 let gameFrame = 0;
 const staggerFrames = 10;
 
-openBtn.addEventListener("click", ()=>{
-    oopaWindow.classList.add("open")
-})
-oopaWindow.addEventListener("click", ()=>{
-    oopaWindow.classList.remove("open")
-})
+
+function closeWindow(){
+    pulledOopaWindow.classList.remove("oopaOpen")
+}
 
 function drawMachine(){
     console.log("ahoj")
     ctx.drawImage(machine, frameX*frameWidth, frameY*frameHeight, frameWidth, frameHeight, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 }
-machine.onload = function(){drawMachine()}
 
 
-if(!localStorage.getItem("Pity Count")){
-    localStorage.setItem("Pity Count", 0);
-}
-let pityCount = Number(localStorage.getItem("Pity Count"));
 
-
-document.getElementById("pityCount").innerHTML =pityCount +"/"+gachaTable.pity
-oopaCtx.imageSmoothingEnabled = false;
-const oopasImage = new Image()
-oopasImage.src = "images/Oopa.png"
-oopasImage.style.imageRendering = "pixelated"
 function pull(){
     pityCount++
     localStorage.setItem("Pity Count", pityCount)
@@ -126,20 +123,27 @@ function pull(){
         index = gachaTable.rareIndex
 
     }
-    drawOopa(index)
+    return drawOopa(null,index)
+    
 }
 
-function closeWindow(){
-    pulledOopaWindow.onclick = ()=>{pulledOopaWindow.classList.remove("oopaOpen")}
-}
 
-function drawOopa(index){
-    let ranOopa = Math.floor(Math.random()*pool[index].oopas.length)
-    oopaCtx.drawImage(oopasImage, ranOopa*32, index*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
-    pulledOopaName.style.color = pool[index].color
-    pulledOopaName.innerHTML = pool[index].rarity+": " + pool[index].oopas[ranOopa]
-}
 
+function drawOopa(x, y){
+    let posX = x
+    let posY = y
+    if(!x){
+        posX = Math.floor(Math.random()*pool[posY].oopas.length)
+        console.log(x)
+    }
+    oopaCtx.drawImage(oopasImage, posX*32, posY*32, 32, 32, 0, 0, oopaCanvasWidth, oopaCanvasHeight)
+    pulledOopaName.style.color = pool[posY].color
+    pulledOopaName.innerHTML = pool[posY].rarity+": " + pool[posY].oopas[posX]
+
+
+    return {x: posX, y: posY, rarity: pool[posY].rarity, name: pool[posY].oopas[posX]} 
+}
+let oopaInfo = null
 function pullAnimation(){
     canvas.onclick = null;
     if(gameFrame % staggerFrames == 0){
@@ -150,11 +154,12 @@ function pullAnimation(){
             gameFrame = 0;
             frameX = 0;
             ctx.drawImage(machine, frameX*frameWidth, frameY*frameHeight, frameWidth, frameHeight, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-            pull()
+            oopaInfo = pull()
+            console.log(oopaInfo)
             document.getElementById("pityCount").innerHTML =pityCount +"/"+gachaTable.pity
             pulledOopaWindow.onclick = null
             pulledOopaWindow.classList.add("oopaOpen")
-            setTimeout(closeWindow, 500)
+            setTimeout(() => {pulledOopaWindow.onclick = closeWindow}, 500)
             canvas.onclick = pullAnimation
             return;
         }else{
@@ -165,7 +170,38 @@ function pullAnimation(){
     requestAnimationFrame(pullAnimation)
 }
 
+if(!localStorage.getItem("Inventory")){
+    localStorage.setItem("Inventory", "[]")
+}
+let inventory = localStorage.getItem("Inventory")
+function claimOopa(){
+    console.log(inventory)
+    let storedObj = JSON.parse(inventory) || []
+    storedObj.push(oopaInfo)
+    console.log("This is storedObj " + JSON.stringify(storedObj))
+    inventory = JSON.stringify(storedObj)
+    localStorage.setItem("Inventory", inventory)
 
+    console.log(JSON.parse(inventory))
+    
+    closeWindow()
+}
+const inventoryWindow = document.getElementById("inventoryWindow")
+function showInventory(){
+    document.documentElement.style.overflow = "hidden"
+    inventoryWindow.classList.add("openInventory")
+}
+function closeInventory(){
+    document.documentElement.style.overflow = "scroll"
+    inventoryWindow.classList.remove("openInventory")
+}
+openBtn.addEventListener("click", ()=>{
+    oopaWindow.classList.add("open")
+})
+oopaWindow.addEventListener("click", ()=>{
+    oopaWindow.classList.remove("open")
+})
+machine.onload = function(){drawMachine()}
 
 
 

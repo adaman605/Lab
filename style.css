@@ -54,16 +54,15 @@ button img{
 html{
   display: flex;
   justify-content: center;
-
   background-image: url(./images/SteinsGateCog.png);
 }
 
 body{
-
+  
   width: max-content;
   height: max-content;
   margin: 100px 0px 100px 0px ;
-  padding: 10px;
+  padding: 20px;
 
   background-color: #E8EBEB;
 
@@ -73,7 +72,7 @@ body{
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 1200px;
-  row-gap: 10px;
+  row-gap: 20px;
 }
 
 header{
@@ -83,10 +82,11 @@ header{
 
   color: black;
 
-  border-radius: 10px 10px 0 0;
+  background-color: hsl(0, 0%, 85%);;
   border-width: 3.5px;
   border-style: solid;
   border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
+  border-radius: 10px 10px 0 0;
   
 }
 
@@ -99,11 +99,11 @@ main{
   gap: 10px;
 }
 .navbar{
-  height: max-content;
-  
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: hsl(0, 0%, 85%);
 
-  border: 2px solid hsl(180, 1%, 40%);
 
   grid-column: 1/2;
   grid-row: 1/3;
@@ -125,9 +125,7 @@ main{
   gap: 15px;
 }
 section{
-  background-color: hsl(0, 0%, 85%);
 
-  border: 2px solid hsl(180, 1%, 40%);
 
   display: flex;
   flex-direction: column;
@@ -152,10 +150,15 @@ section .contents{
   grid-column: 1/2;
   gap: 10px;
 }
+.footerContent{
+  margin: 0;
+  flex: 1;
+
+}
 footer{
   height: 80px;
-  padding: 10px;
-  
+  display: flex;
+  background-color: hsl(0, 0%, 85%);;
   border-width: 3.5px;
   border-style: solid;
   border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
@@ -164,7 +167,9 @@ footer{
   
 }
 
-
+.outline{
+  outline: 2px solid hsl(180, 1%, 40%);
+}
 .head{
   height: max-content;
   background-color: #404141;
@@ -207,11 +212,11 @@ footer{
 .frame{
   min-height: 0;
   padding: 10px;
-  
+  background-color: hsl(0, 0%, 85%);
+
   border-width: 3.5px;
   border-style: solid;
   border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
-
   display: flex;
   flex-direction: column;
 
@@ -220,7 +225,7 @@ footer{
 }
 .contents{
   height: 100%;
-  padding: 20px;
+
 
   background-color: hsl(0, 0%, 95%);
   
@@ -230,7 +235,7 @@ footer{
   border-radius: 3px;
 
   display: flex;
-  justify-items: center;
+
   flex-direction: column;
 }
 
@@ -246,16 +251,19 @@ footer{
 
 
 .musicframe{
-  height: max-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   
   background-color: hsl(0, 0%, 85%);
-  border: 2px solid hsl(180, 1%, 40%);
+
 
   grid-row: 1/2;
 }
 .music{
   padding: 10px;
-  
+  flex: 1;
+
   border-width: 3.5px;
   border-style: solid;
   border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
@@ -340,7 +348,6 @@ audio{
 
 .gameframe{
   background-color: hsl(0, 0%, 85%);
-  border: 2px solid hsl(180, 1%, 40%);
   display: flex;
   flex-direction: column;
   grid-row: 2/4;
@@ -358,27 +365,24 @@ audio{
   align-self: center;
 }
 .gameInfoBtn{
-  width: 30px;
+
   height: 30px;
-
-  background-color: hsl(0, 0%, 85%);
-  border-width: 2px;
-  border-style: solid;
-  border-color: hsl(180, 1%, 100%) hsl(180, 1%, 60%) hsl(180, 1%, 60%) hsl(180, 1%, 100%);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   cursor: pointer;
+  font-weight: bold;
+
 }
-.gameInfoBtn p {
-  cursor: pointer;
-}
+
 #canvas{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 224px;
+  width: 224px;
+  align-self: center;
   cursor: pointer;
 }
-
+#gameContents{
+  display: flex;
+}
 
 
 .oopaWindow{
@@ -437,17 +441,17 @@ th, td{
 
 
 .calendar{
-  border: 2px solid hsl(180, 1%, 40%);
+
   display: flex;
   grid-row: 1/2;
 }
 .updates{
-  border: 2px solid hsl(180, 1%, 40%);
+ 
   display: flex;
   grid-row: 2/3;
 }
 .alpacaman{
-  border: 2px solid hsl(180, 1%, 40%);
+
   display: flex;
 }
 .asideBottom{
@@ -461,16 +465,28 @@ th, td{
 .bottomTop{
   display: flex;
   height: 50%;
-  border: 2px solid hsl(180, 1%, 40%);
+
 
 }
 .bottomBottom{
   display: flex;
   height: 50%;
-  border: 2px solid hsl(180, 1%, 40%);
+
+
+}
+.inventoryBtn{
+  width: 100%;
+  height: 100%;
+}
+
+.alpacamanImg{
+  height: 100%;
 
 }
 
+section .frame .contents{
+  padding: 20px;
+}
 #okabe{
   display: block;
   position: absolute;
@@ -500,4 +516,57 @@ th, td{
   font-family: "SteinsGate";
   color: #ffd000;
   font-size: 50px;
+}
+
+
+.oopaCard{
+  height: 256px;
+  width: 256px;
+  flex-direction: column;
+  min-height: 0;
+}
+.innerCard{
+  height: 100%;
+}
+.innerCard .contents{
+  align-items: center;
+  justify-content: center;
+
+}
+
+#oopaCanvas{
+  width: 128px;
+  margin: 20px;
+}
+.claimOopa{
+  width: 100%;
+  flex: 1;
+}
+
+#pulledOopaName{
+  user-select: none;
+}
+
+.inventoryWindow{
+  background-color: #E8EBEB;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+  opacity: 0;
+
+}
+
+.inventoryWindow.openInventory{
+  z-index: 999;
+  opacity: 1;
+}
+
+.inventoryWindow.frame{
+  flex: 1;
 }
