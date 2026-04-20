@@ -72,7 +72,7 @@ function playSong(){
     song.src = data.url
     song.volume = 0.50;
     song.loop = true
-    song.currentTime = progress.value
+    progress.value = song.currentTime
     song.play()
 
     songPlayer.onclick = stopSong;
@@ -86,3 +86,6 @@ function stopSong(){
     songPlayer.onclick = playSong;
     
 }
+setInterval(()=>{
+    progress.value = song.currentTime
+},1000)
